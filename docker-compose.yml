@@ -1,0 +1,28 @@
+nginx:
+      container_name: nginx
+      image: nginx
+      ports:
+        - "8008:80"
+      links:
+        - php-fpm
+      volumes:    
+        - nginx:/etc/nginx
+        - /home/sidharth/Downloads:/Workspace
+php-fpm:
+      container_name: PHP-FPM
+      image: php:7.2-fpm
+      ports:
+        - "9009:9000"
+      volumes:
+        - php:/usr/local/etc/php
+        - /home/sidharth/Downloads:/Workspace
+mysql:
+      container_name: mysql
+      image: mariadb
+      ports:
+        - "3309:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+      volumes:
+        - database:/var/lib/mysql
+
